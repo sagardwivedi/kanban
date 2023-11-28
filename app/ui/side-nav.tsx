@@ -12,8 +12,8 @@ export function SideNav() {
   return (
     <div
       className={`h-full ${
-        isOpen ? 'w-64' : 'w-0'
-      } border-r border-white/20 bg-primary-background transition-all duration-100`}
+        isOpen ? 'w-64 ' : 'w-0'
+      } border-r border-white/20 bg-primary-background`}
     >
       <div className="flex h-full flex-col justify-between">
         <div>
