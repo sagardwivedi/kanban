@@ -1,5 +1,6 @@
 'use client';
 
+import { useSidebarHide } from '@/hooks/useSidebarHide';
 import { MoonIcon, SunIcon } from '@heroicons/react/24/outline';
 import { Root, Thumb } from '@radix-ui/react-switch';
 import { useTheme } from 'next-themes';
@@ -8,12 +9,13 @@ import { useEffect, useState } from 'react';
 export function ThemeChanger() {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
+  const { isOpen } = useSidebarHide();
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  if (!mounted) {
+  if (!mounted || !isOpen) {
     return <div className="h-10 w-full rounded-md bg-white/50"></div>;
   }
 
