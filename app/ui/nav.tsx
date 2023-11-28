@@ -37,8 +37,8 @@ export async function Boards() {
           <ActiveLink href={`/board/${board.id}`} text={board.name} />
         </Suspense>
       ))}
-      <div className='flex flex-row items-center gap-x-3 pl-5'>
-        <ViewColumnsIcon className='h-5 w-5 text-primary-color' />
+      <div className="flex flex-row items-center gap-x-3 pl-5">
+        <ViewColumnsIcon className="h-5 w-5 text-primary-color" />
         <button className="text-primary-color">+ Create New Board</button>
       </div>
     </div>

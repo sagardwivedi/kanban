@@ -14,7 +14,7 @@ export function ActiveLink({ href, text }: { href: string; text: string }) {
         path === href
           ? 'gap-1 rounded-r-full bg-primary-color text-white'
           : 'text-white/50'
-      } flex flex-row items-center py-2 pl-5 gap-1 w-[90%]
+      } flex w-[90%] flex-row items-center gap-1 py-2 pl-5
       `}
     >
       <ViewColumnsIcon className={`h-5 w-5`} />
