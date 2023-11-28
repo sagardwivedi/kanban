@@ -11,7 +11,7 @@ if bun run prettier; then
     echo '🌈✨ Code styling with Prettier succeeded! ✨🌈'
     
     # Add formatted files to the staging area
-    git add $(git ls-files --modified)
+    git add .
 else
     echo '❌ Prettier encountered an error during formatting. Check the console for details.'
     exit 1
