@@ -10,7 +10,7 @@ const TaskCard = ({ task }: { task: Task }) => {
   );
 
   return (
-    <div className="rounded-md shadow mb-4 bg-primary-background p-4">
+    <div className="mb-4 rounded-md bg-primary-background p-4 shadow">
       <p className="text-lg font-semibold">{task.name}</p>
       <p className="text-white/50">
         {filteredSubtasks.length} of {task.subtasks.length} subtasks
@@ -34,9 +34,9 @@ const Column = ({ column }: { column: Column }) => {
   };
 
   return (
-    <div key={column.id} className="rounded-md mb-4 mr-4 w-[21rem] p-4">
+    <div key={column.id} className="mb-4 mr-4 w-[21rem] rounded-md p-4">
       <div className="mb-5 flex flex-row items-center gap-x-2">
-        <div className={`rounded-full h-3 w-3 ${getColumnColor()}`}></div>
+        <div className={`h-3 w-3 rounded-full ${getColumnColor()}`}></div>
         <p className="text-sm text-white/50">
           {column.name} ({column.tasks.length})
         </p>

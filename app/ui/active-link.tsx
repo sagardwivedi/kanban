@@ -12,7 +12,7 @@ export function ActiveLink({ href, text }: { href: string; text: string }) {
       href={href}
       className={`${
         path === href ? 'gap-1  bg-primary-color text-white' : 'text-white/50'
-      } rounded-r-full flex w-[90%] flex-row items-center gap-1 py-2 pl-5 transition-colors duration-200 ease-linear
+      } flex w-[90%] flex-row items-center gap-1 rounded-r-full py-2 pl-5 transition-colors duration-200 ease-linear
       `}
     >
       <ViewColumnsIcon className={`h-5 w-5`} />

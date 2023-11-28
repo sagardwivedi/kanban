@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <main className="flex h-full w-full items-center justify-center bg-secondary-background">
       <div className="text-center">
-        <h1 className="text-4xl mb-4 font-bold text-primary-color">
+        <h1 className="mb-4 text-4xl font-bold text-primary-color">
           Click on boards to see tasks
         </h1>
         <p className="text-white">

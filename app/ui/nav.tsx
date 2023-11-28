@@ -7,7 +7,7 @@ import { BoardLoader } from './suspense';
 export function Nav() {
   return (
     <div>
-      <div className="text-xs tracking-wider flex flex-row items-center gap-2 pl-5 pt-2 text-white/50">
+      <div className="flex flex-row items-center gap-2 pl-5 text-xs tracking-wider text-white/50">
         <p>ALL BOARDS</p>
         <Suspense
           fallback={<div className="h-1 w-1 bg-white/50 pl-5 pt-2"></div>}
