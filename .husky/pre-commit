@@ -5,18 +5,16 @@
 
 echo '🏗️👷 Styling, testing, and building your project before committing'
 
-# Check Prettier standards
-if ! bun run prettier:check; then
-    echo '🤢🤮🤢🤮 Its F**KING RAW - Your styling looks disgusting. 🤢🤮🤢🤮
-            Prettier Check Failed. Running bun run prettier to fix issues...'
+# Run Prettier to format code
+echo '🚀 Running Prettier to format code...'
+if bun run prettier; then
+    echo '🌈✨ Code styling with Prettier succeeded! ✨🌈'
     
-    # Run Prettier to format code
-    if bun run prettier; then
-        echo '🌈✨ Code styling with Prettier succeeded! ✨🌈'
-    else
-        echo '❌ Prettier encountered an error during formatting. Check the console for details.'
-        exit 1
-    fi
+    # Add formatted files to the staging area
+    git add $(git ls-files --modified)
+else
+    echo '❌ Prettier encountered an error during formatting. Check the console for details.'
+    exit 1
 fi
 
 # Build project
