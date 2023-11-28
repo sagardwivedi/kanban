@@ -1,9 +1,11 @@
+import { Box, Flex, Theme } from '@radix-ui/themes';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
 import { SideNav } from '@/app/ui/side-nav';
+import { Provider } from './provider';
+import '@radix-ui/themes/styles.css';
 import './globals.css';
-import { TopBar } from './ui/top-bar';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -18,14 +20,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={`${inter.className} flex h-screen flex-row`}>
-        <div className="hidden flex-none md:block">
-          <SideNav />
-        </div>
-        <div className="flex-grow md:overflow-y-auto">
-          <div className="h-full w-full">{children}</div>
-        </div>
+    <html lang="en" suppressHydrationWarning>
+      <body className={inter.className}>
+        <Provider>
+          <Theme accentColor="violet" radius="medium">
+            <Flex className="h-screen">
+              <Box className="max-md:hidden">
+                <SideNav />
+              </Box>
+              <Box grow={'1'}>
+                <div className="h-full w-full">{children}</div>
+              </Box>
+            </Flex>
+          </Theme>
+        </Provider>
       </body>
     </html>
   );

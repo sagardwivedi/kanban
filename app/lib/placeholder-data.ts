@@ -37,7 +37,13 @@ export const boards: Board[] = [
             name: 'Design settings and search pages',
             description: '',
             status: 'TODO',
-            subtasks: [],
+            subtasks: [
+              {
+                id: 1,
+                name: 'Test onboarding flow',
+                status: 'TODO',
+              },
+            ],
           },
           {
             id: 3,
@@ -57,7 +63,13 @@ export const boards: Board[] = [
             name: 'Marketing Plan',
             description: '',
             status: 'DOING',
-            subtasks: [],
+            subtasks: [
+              {
+                id: 1,
+                name: 'Design wireframes',
+                status: 'DOING',
+              },
+            ],
           },
           {
             id: 5,
