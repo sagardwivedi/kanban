@@ -18,12 +18,12 @@ import {
   Viewport,
 } from '@radix-ui/react-select';
 
-import { useTaskModal } from '@/hooks/useTaskModal';
+import { useNewTaskModal } from '@/hooks/useNewTaskModal';
 import { CheckIcon } from '@heroicons/react/24/outline';
-import Modal from './Modal';
+import Modal from '../Modal';
 
-export function TaskModal() {
-  const { isOpen, onClose } = useTaskModal();
+export function NewTaskModal() {
+  const { isOpen, onClose } = useNewTaskModal();
 
   const onChange = (open: boolean) => {
     if (!open) {
@@ -96,7 +96,7 @@ export function TaskModal() {
           <label className="mb-1 block" htmlFor="status">
             Status
           </label>
-          <Select />
+          <StatusSelect />
         </div>
         <button
           type="button"
@@ -109,9 +109,9 @@ export function TaskModal() {
   );
 }
 
-const Select = () => {
+export const StatusSelect = ({ value }: { value?: string }) => {
   return (
-    <Root>
+    <Root defaultValue={value}>
       <Trigger
         className="flex w-full flex-row items-center justify-between rounded-md border border-neutral-500 bg-transparent p-2"
         aria-label="Status"

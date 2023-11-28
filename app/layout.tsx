@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
 import { SideNav } from '@/app/ui/side-nav';
-import { ModalProvider } from '@/provider/ModelProvider';
+import { ModalProvider } from '@/provider/ModalProvider';
 import './globals.css';
 import { Provider } from './provider';
 

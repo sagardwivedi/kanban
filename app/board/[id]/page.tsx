@@ -1,23 +1,9 @@
 import { notFound } from 'next/navigation';
 
-import { Column, Task } from '@/app/lib/definition';
+import { Column } from '@/app/lib/definition';
 import { getTasks } from '@/app/lib/utils';
 import { TopBar } from '@/app/ui/top-bar';
-
-const TaskCard = ({ task }: { task: Task }) => {
-  const filteredSubtasks = task.subtasks.filter(
-    (t) => t.status !== task.status,
-  );
-
-  return (
-    <div className="mb-4 rounded-md bg-primary-background p-4 shadow">
-      <p className="text-lg font-semibold">{task.name}</p>
-      <p className="text-white/50">
-        {filteredSubtasks.length} of {task.subtasks.length} subtasks
-      </p>
-    </div>
-  );
-};
+import { TaskCard } from '@/app/ui/TaskCard';
 
 const Column = ({ column }: { column: Column }) => {
   const getColumnColor = () => {

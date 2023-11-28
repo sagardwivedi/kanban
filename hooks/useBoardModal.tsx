@@ -6,7 +6,7 @@ interface BoardModalState {
   onClose: () => void;
 }
 
-export const useUploadModal = create<BoardModalState>()((set) => ({
+export const useBoardModal = create<BoardModalState>()((set) => ({
   isOpen: false,
   onOpen: () => set({ isOpen: true }),
   onClose: () => set({ isOpen: false }),

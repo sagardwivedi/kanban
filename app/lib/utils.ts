@@ -1,4 +1,4 @@
-import { Board, Column } from './definition';
+import { Board, Column, Task } from './definition';
 import { boards } from './placeholder-data';
 
 export const getTasks = (id: number): Column[] =>
@@ -11,3 +11,13 @@ export const getBoardLength = (): number => boards.length;
 
 export const getBoardName = (id: number): string =>
   (boards.find((board) => board.id === id) || { name: 'Board not found' }).name;
+
+export const addBoardName = (name: string) => {
+  const length = boards.length;
+  const newBoard: Board = {
+    id: length + 1,
+    name: name,
+    columns: [],
+  };
+  boards.push(newBoard);
+};

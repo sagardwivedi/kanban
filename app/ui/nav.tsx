@@ -1,7 +1,8 @@
-import { ViewColumnsIcon } from '@heroicons/react/24/outline';
 import { Suspense } from 'react';
+
 import { getBoardLength, getBoards } from '../lib/utils';
 import { ActiveLink } from './active-link';
+import { NewBoardButton } from './buttons';
 import { BoardLoader } from './suspense';
 
 export function Nav() {
@@ -37,10 +38,7 @@ export function Boards() {
           <ActiveLink href={`/board/${board.id}`} text={board.name} />
         </Suspense>
       ))}
-      <div className="flex flex-row items-center gap-x-3 py-2 pl-5">
-        <ViewColumnsIcon className="h-5 w-5 text-primary-color" />
-        <button className="text-primary-color">+ Create New Board</button>
-      </div>
+      <NewBoardButton />
     </div>
   );
 }
