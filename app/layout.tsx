@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
-import { SideNav } from '@/app/ui/side-nav';
 import { ModalProvider } from '@/provider/ModalProvider';
 import './globals.css';
 import { Provider } from './provider';
@@ -22,14 +21,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <Provider>
           <ModalProvider />
-          <div className="flex h-screen flex-row">
-            <div className="max-md:hidden">
-              <SideNav />
-            </div>
-            <div className="flex-grow">
-              <div className="h-full w-full">{children}</div>
-            </div>
-          </div>
+          <main>{children}</main>
         </Provider>
       </body>
     </html>

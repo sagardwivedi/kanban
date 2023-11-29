@@ -20,10 +20,28 @@ import {
 
 import { useNewTaskModal } from '@/hooks/useNewTaskModal';
 import { CheckIcon } from '@heroicons/react/24/outline';
+import { useState } from 'react';
+import { FieldValues, useFieldArray, useForm } from 'react-hook-form';
+import Input from '../Input';
 import Modal from '../Modal';
 
 export function NewTaskModal() {
   const { isOpen, onClose } = useNewTaskModal();
+  const [isLoading, setIsLoading] = useState(false);
+
+  const { control, register, handleSubmit } = useForm<FieldValues>({
+    defaultValues: {
+      task_name: '',
+      description: '',
+      subtasks: [{ subtask_name: '' }],
+      status: '',
+    },
+  });
+
+  const { append, remove, fields } = useFieldArray({
+    control,
+    name: 'subtasks',
+  });
 
   const onChange = (open: boolean) => {
     if (!open) {
@@ -31,19 +49,19 @@ export function NewTaskModal() {
     }
   };
 
+  const onSubmit = (data: FieldValues) => console.log('data', data);
+
   return (
     <Modal title="Add New Task" isOpen={isOpen} onChange={onChange}>
-      <form className="flex flex-col gap-3">
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
         <div>
-          <label className="mb-1 block" htmlFor="title">
+          <label className="mb-1 block" htmlFor="task_name">
             Title
           </label>
-          <input
-            type="text"
-            name="Title"
-            id="title"
+          <Input
+            id="task_name"
             placeholder="e.g. Take coffee break"
-            className="w-full rounded-md border border-gray-50 bg-transparent p-2 placeholder:text-gray-500 focus:outline-none"
+            {...register('task_name')}
           />
         </div>
         <div>
@@ -55,7 +73,7 @@ export function NewTaskModal() {
             id="description"
             rows={6}
             placeholder="e.g. It's always good to take a break. This 15 minute break will recharge the batteries a little"
-            className="w-full resize-none  rounded-md border border-gray-50 bg-transparent p-2 placeholder:text-gray-500 focus:outline-none"
+            className="w-full resize-none  rounded-md border border-gray-950 bg-transparent p-2 placeholder:text-gray-500 focus:outline-none dark:border-gray-50"
           />
         </div>
         <div>
@@ -63,28 +81,23 @@ export function NewTaskModal() {
             Subtasks
           </label>
           <div className="flex flex-col gap-y-2">
-            <div className="flex flex-row items-center gap-2">
-              <input
-                type="text"
-                name="Subtasks"
-                id="subtasks"
-                placeholder="e.g. Make Coffee"
-                className="w-full rounded-md border border-gray-50 bg-transparent p-2 placeholder:text-gray-500 focus:outline-none"
-              />
-              <XMarkIcon className="h-8 w-8 cursor-pointer font-semibold text-white/50 hover:text-white" />
-            </div>
-            <div className="flex flex-row items-center gap-2">
-              <input
-                type="text"
-                name="Subtasks"
-                id="subtasks"
-                placeholder="e.g. Make Coffee"
-                className="w-full rounded-md border border-gray-50 bg-transparent p-2 placeholder:text-gray-500 focus:outline-none"
-              />
-              <XMarkIcon className="h-8 w-8 cursor-pointer font-semibold text-white/50 hover:text-white" />
-            </div>
+            {fields.map((item, index) => {
+              return (
+                <div key={item.id} className="flex flex-row items-center gap-2">
+                  <Input
+                    placeholder="e.g. Make a coffee"
+                    {...register(`subtask.${index}.name`, { required: true })}
+                  />
+                  <XMarkIcon
+                    onClick={() => remove(index)}
+                    className="h-8 w-8 cursor-pointer font-semibold text-white/50 hover:text-white"
+                  />
+                </div>
+              );
+            })}
           </div>
           <button
+            onClick={() => append({ subtask_name: '' })}
             type="button"
             className="mt-4 flex w-full flex-row items-center justify-center gap-x-1 rounded-full bg-white p-2 font-semibold text-primary-color"
           >
@@ -99,7 +112,7 @@ export function NewTaskModal() {
           <StatusSelect />
         </div>
         <button
-          type="button"
+          type="submit"
           className="mt-4 w-full rounded-full bg-primary-color  p-2 font-semibold text-white"
         >
           Create Task
@@ -124,7 +137,7 @@ export const StatusSelect = ({ value }: { value?: string }) => {
       <Portal>
         <Content
           position="popper"
-          className="w-full rounded-md bg-primary-background"
+          className="bg-primary-background w-full rounded-md"
         >
           <Viewport className="w-[27rem] p-2">
             <Item

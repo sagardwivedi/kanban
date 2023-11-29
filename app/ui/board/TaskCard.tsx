@@ -1,7 +1,7 @@
 'use client';
 
 import { useTaskModal } from '@/hooks/useTaskModal';
-import { Task } from '../lib/definition';
+import { Task } from '../../lib/definition';
 
 export const TaskCard = ({ task }: { task: Task }) => {
   const { onOpen, setTask } = useTaskModal();
@@ -18,10 +18,10 @@ export const TaskCard = ({ task }: { task: Task }) => {
   return (
     <div
       onClick={handleClick}
-      className="mb-4 cursor-pointer rounded-md bg-primary-background p-4 shadow"
+      className="mb-4 cursor-pointer rounded-md bg-primary-background_light p-4 shadow dark:bg-primary-background_dark"
     >
-      <p className="text-lg font-semibold">{task.name}</p>
-      <p className="text-white/50">
+      <p className="text-lg font-semibold">{task.task_name}</p>
+      <p className="dark:text-white/50">
         {filteredSubtasks.length} of {task.subtasks.length} subtasks
       </p>
     </div>
