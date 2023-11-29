@@ -1,7 +1,7 @@
 'use client';
 
 import { useTaskModal } from '@/hooks/useTaskModal';
-import { Task } from '../lib/definition';
+import { Task } from '../../lib/definition';
 
 export const TaskCard = ({ task }: { task: Task }) => {
   const { onOpen, setTask } = useTaskModal();

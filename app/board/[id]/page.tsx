@@ -1,29 +1,24 @@
 import { PlusIcon } from '@heroicons/react/24/solid';
 
-import { getColumns, getTasks } from '@/app/lib/data';
+import { getBoardName, getColumns, getTasks } from '@/app/lib/data';
 import { Column, Task } from '@/app/lib/definition';
-import { TaskCard } from '@/app/ui/TaskCard';
-import { TopBar } from '@/app/ui/top-bar';
+import { TopBar } from '@/app/ui/TopBar/top-bar';
+import { TaskCard } from '@/app/ui/board/TaskCard';
 
-function Column({ tasks, status }: { tasks: Task[]; status: string }) {
-  const getColumnColor = () => {
-    switch (status) {
-      case 'Todo':
-        return 'bg-[#4dc1e8]';
-      case 'Doing':
-        return 'bg-[#8472ec]';
-      case 'Completed':
-        return 'bg-[#64e3b2]';
-      default:
-        return '';
-    }
-  };
-
+function Column({
+  tasks,
+  status,
+  color,
+}: {
+  tasks: Task[];
+  status: string;
+  color: string;
+}) {
   return (
     <div className="w-[20rem]">
       <div className="mb-4 flex flex-row items-center gap-x-2">
-        <div className={`h-3 w-3 rounded-full ${getColumnColor()}`}></div>
-        <p className="text-sm text-white/50">
+        <div className={`h-3 w-3 rounded-full ${color}`}></div>
+        <p className="text-sm text-black dark:text-white/50">
           <span className="uppercase tracking-widest">{status}</span> (
           {tasks.length})
         </p>
@@ -44,16 +39,17 @@ async function KanbanBoard({
   columnOrder: Column[];
 }) {
   return (
-    <div className="flex flex-row gap-8 overflow-x-auto">
+    <div className="flex h-full flex-row gap-8 overflow-x-scroll">
       {columnOrder.map((status) => (
         <Column
           key={status.id}
           tasks={tasks.filter((task) => task.status === status.column_name)}
           status={status.column_name}
+          color={status.column_color}
         />
       ))}
-      <div className="flex h-full w-full flex-1 items-center justify-center bg-primary-background_light p-4 dark:bg-primary-background_dark">
-        <button key="new-column">
+      <div className="flex h-full w-full flex-1 items-center justify-center rounded-md bg-primary-background_light p-4 dark:bg-primary-background_dark">
+        <button key="new-column" className="flex flex-row items-center gap-x-2">
           <PlusIcon className="h-5 w-5" />
           New Column
         </button>
@@ -63,13 +59,16 @@ async function KanbanBoard({
 }
 
 export default async function Page({ params }: { params: { id: string } }) {
-  const tasks = await getTasks(params.id);
-  const columnOrder = await getColumns(params.id);
+  const [tasks, columnOrder, boardName] = await Promise.all([
+    getTasks(params.id),
+    getColumns(params.id),
+    getBoardName(params.id),
+  ]);
 
   return (
-    <div className="h-full bg-secondary-background_light dark:bg-secondary-background_dark">
-      <TopBar id={parseInt(params.id)} />
-      <div className="p-8">
+    <div className="min-h-screen bg-secondary-background_light dark:bg-secondary-background_dark">
+      <TopBar name={boardName} />
+      <div className="h-full p-8 pr-0">
         <KanbanBoard tasks={tasks} columnOrder={columnOrder} />
       </div>
     </div>

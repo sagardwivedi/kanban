@@ -26,12 +26,23 @@ export async function getBoards(): Promise<Omit<Board, 'tasks'>[]> {
   }
 }
 
+export async function getBoardName(id: string) {
+  const supabase = createClient(cookies());
+  const { data } = await supabase
+    .from('projects')
+    .select('project_name')
+    .eq('project_id', id)
+    .single();
+
+  return data?.project_name || '';
+}
+
 export async function getColumns(project_id: string): Promise<Column[]> {
   const supabase = createClient(cookies());
 
   const { data } = await supabase
     .from('columns')
-    .select('id, column_name')
+    .select('id, column_name, column_color')
     .eq('project_id', project_id);
 
   if (data === null) {

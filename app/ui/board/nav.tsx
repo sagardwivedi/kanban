@@ -1,6 +1,6 @@
-import { getBoards } from '../lib/data';
-import { ActiveLink } from './active-link';
-import { NewBoardButton } from './buttons';
+import { getBoards } from '../../lib/data';
+import { ActiveLink } from '../active-link';
+import { NewBoardButton } from '../buttons';
 
 export async function Nav() {
   const boards = await getBoards();

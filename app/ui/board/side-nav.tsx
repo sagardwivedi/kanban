@@ -1,9 +1,10 @@
 'use client';
 
 import { useSidebarHide } from '@/hooks/useSidebarHide';
-import { Logo } from './logo';
+import Link from 'next/link';
+import { Logo } from '../logo';
+import { ThemeChanger } from '../theme-changer';
 import { ShowNavChanger } from './shownovchanger';
-import { ThemeChanger } from './theme-changer';
 
 export function SideNav({ children }: { children: React.ReactNode }) {
   const { isOpen } = useSidebarHide();
@@ -17,7 +18,9 @@ export function SideNav({ children }: { children: React.ReactNode }) {
       <div className="flex h-full flex-col justify-between">
         <div>
           <div className="h-20 pl-8 pt-5 ">
-            <Logo />
+            <Link href={'/board'}>
+              <Logo />
+            </Link>
           </div>
           {children}
         </div>

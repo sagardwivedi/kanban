@@ -11,18 +11,21 @@ export interface Database {
     Tables: {
       columns: {
         Row: {
+          column_color: string;
           column_name: string;
           created_at: string;
           id: number;
           project_id: string;
         };
         Insert: {
+          column_color: string;
           column_name: string;
           created_at?: string;
           id?: number;
           project_id: string;
         };
         Update: {
+          column_color?: string;
           column_name?: string;
           created_at?: string;
           id?: number;
