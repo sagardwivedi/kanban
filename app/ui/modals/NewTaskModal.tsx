@@ -43,7 +43,7 @@ export function NewTaskModal() {
             name="Title"
             id="title"
             placeholder="e.g. Take coffee break"
-            className="w-full rounded-md border border-gray-50 bg-transparent p-2 placeholder:text-gray-500 focus:outline-none"
+            className="w-full rounded-md border border-gray-950 bg-transparent p-2 placeholder:text-gray-500 focus:outline-none dark:border-gray-50"
           />
         </div>
         <div>
@@ -55,7 +55,7 @@ export function NewTaskModal() {
             id="description"
             rows={6}
             placeholder="e.g. It's always good to take a break. This 15 minute break will recharge the batteries a little"
-            className="w-full resize-none  rounded-md border border-gray-50 bg-transparent p-2 placeholder:text-gray-500 focus:outline-none"
+            className="w-full resize-none  rounded-md border border-gray-950 bg-transparent p-2 placeholder:text-gray-500 focus:outline-none dark:border-gray-50"
           />
         </div>
         <div>
@@ -69,7 +69,7 @@ export function NewTaskModal() {
                 name="Subtasks"
                 id="subtasks"
                 placeholder="e.g. Make Coffee"
-                className="w-full rounded-md border border-gray-50 bg-transparent p-2 placeholder:text-gray-500 focus:outline-none"
+                className="w-full rounded-md border border-gray-950 bg-transparent p-2 placeholder:text-gray-500 focus:outline-none dark:border-gray-50"
               />
               <XMarkIcon className="h-8 w-8 cursor-pointer font-semibold text-white/50 hover:text-white" />
             </div>
@@ -79,7 +79,7 @@ export function NewTaskModal() {
                 name="Subtasks"
                 id="subtasks"
                 placeholder="e.g. Make Coffee"
-                className="w-full rounded-md border border-gray-50 bg-transparent p-2 placeholder:text-gray-500 focus:outline-none"
+                className="w-full rounded-md border border-gray-950 bg-transparent p-2 placeholder:text-gray-500 focus:outline-none dark:border-gray-50"
               />
               <XMarkIcon className="h-8 w-8 cursor-pointer font-semibold text-white/50 hover:text-white" />
             </div>
@@ -124,7 +124,7 @@ export const StatusSelect = ({ value }: { value?: string }) => {
       <Portal>
         <Content
           position="popper"
-          className="w-full rounded-md bg-primary-background"
+          className="bg-primary-background w-full rounded-md"
         >
           <Viewport className="w-[27rem] p-2">
             <Item

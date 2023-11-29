@@ -20,7 +20,7 @@ export function TaskModal({ task }: { task: Task | null }) {
 
   return (
     <Modal
-      title={task.name}
+      title={task.task_name}
       description={task.description}
       onChange={onChange}
       isOpen={isOpen}
@@ -31,12 +31,12 @@ export function TaskModal({ task }: { task: Task | null }) {
           <div className="flex flex-col gap-y-1">
             {task.subtasks.map((task) => (
               <div
-                key={task.id}
+                key={task.subtask_id}
                 className="flex flex-row items-center gap-x-2 rounded-md bg-neutral-900 px-3 py-2"
               >
                 <input type="checkbox" className="peer accent-primary-color" />
                 <p className="peer-checked:text-white/50 peer-checked:line-through">
-                  {task.name}
+                  {task.subtask_name}
                 </p>
               </div>
             ))}

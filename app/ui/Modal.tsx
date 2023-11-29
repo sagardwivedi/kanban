@@ -12,7 +12,7 @@ interface ModalProps {
   onChange: (open: boolean) => void;
   title: string;
   children: React.ReactNode;
-  description?: string;
+  description?: string | null;
 }
 
 const Modal: React.FC<ModalProps> = ({
@@ -26,7 +26,7 @@ const Modal: React.FC<ModalProps> = ({
     <Root open={isOpen} defaultOpen={isOpen} onOpenChange={onChange}>
       <Portal>
         <Overlay className="fixed inset-0 grid place-items-center overflow-y-auto bg-black/60 p-8">
-          <Content className="min-w-[500px] rounded bg-secondary-background p-8">
+          <Content className="min-w-[500px] rounded bg-secondary-background_light p-8 dark:bg-secondary-background_dark">
             <Title className="mb-4 text-left text-xl">{title}</Title>
             <Description className="mb-5 text-left text-sm leading-normal">
               {description}

@@ -1,44 +1,25 @@
-import { Suspense } from 'react';
-
-import { getBoardLength, getBoards } from '../lib/utils';
+import { getBoards } from '../lib/data';
 import { ActiveLink } from './active-link';
 import { NewBoardButton } from './buttons';
-import { BoardLoader } from './suspense';
 
-export function Nav() {
+export async function Nav() {
+  const boards = await getBoards();
+
   return (
     <div>
       <div className="flex flex-row items-center gap-2 pl-5 text-xs tracking-wider text-white/50">
-        <p>ALL BOARDS</p>
-        <Suspense
-          fallback={<div className="h-1 w-1 bg-white/50 pl-5 pt-2"></div>}
-        >
-          <ShowLength />
-        </Suspense>
+        <p>ALL BOARDS ({boards.length})</p>
       </div>
-      <Suspense fallback={<BoardLoader />}>
-        <Boards />
-      </Suspense>
-    </div>
-  );
-}
-
-export function ShowLength() {
-  const length = getBoardLength();
-  return <>({length})</>;
-}
-
-export function Boards() {
-  const boards = getBoards();
-
-  return (
-    <div className="mt-2 flex flex-col gap-y-1">
-      {boards.map((board) => (
-        <Suspense key={board.id}>
-          <ActiveLink href={`/board/${board.id}`} text={board.name} />
-        </Suspense>
-      ))}
-      <NewBoardButton />
+      <div className="mt-2 flex flex-col gap-y-1">
+        {boards.map((board) => (
+          <ActiveLink
+            href={`/board/${board.project_id}`}
+            text={board.project_name}
+            key={board.project_id}
+          />
+        ))}
+        <NewBoardButton />
+      </div>
     </div>
   );
 }

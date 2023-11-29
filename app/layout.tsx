@@ -22,14 +22,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <Provider>
           <ModalProvider />
-          <div className="flex h-screen flex-row">
-            <div className="max-md:hidden">
-              <SideNav />
-            </div>
-            <div className="flex-grow">
-              <div className="h-full w-full">{children}</div>
-            </div>
-          </div>
+          <main>{children}</main>
         </Provider>
       </body>
     </html>

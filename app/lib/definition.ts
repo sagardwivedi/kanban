@@ -1,25 +1,26 @@
+type SubtaskStatus = 'Pending' | 'Completed';
+
 export interface Subtask {
-  id: number;
-  name: string;
-  status: string;
+  subtask_id: string;
+  subtask_name: string;
+  status: SubtaskStatus;
 }
 
 export interface Task {
-  id: number;
-  name: string;
-  description: string;
+  task_id: string;
+  task_name: string;
+  description: string | null;
   status: string;
   subtasks: Subtask[];
 }
 
 export interface Column {
   id: number;
-  name: string;
-  tasks: Task[];
+  column_name: string;
 }
 
 export interface Board {
-  id: number;
-  name: string;
-  columns: Column[];
+  project_id: string;
+  project_name: string;
+  tasks: Task[];
 }
