@@ -1,7 +1,6 @@
 'use client';
 
 import { MoonIcon, SunIcon } from '@heroicons/react/24/outline';
-import { Root, Thumb } from '@radix-ui/react-switch';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 
@@ -20,7 +19,7 @@ export function ThemeChanger() {
     return <div className="h-10 w-full rounded-md bg-white/50"></div>;
   }
 
-  const toggleTheme = () => {
+  const handleToggle = () => {
     setTheme(theme === 'light' ? 'dark' : 'light');
   };
 
@@ -28,14 +27,15 @@ export function ThemeChanger() {
     <div className="flex h-10 items-center justify-center rounded-md">
       <div className="flex flex-row items-center gap-2">
         <SunIcon className="h-5 w-5 text-secondary-color dark:text-white/50" />
-        <Root
-          className="peer relative h-[25px] w-[42px] cursor-pointer rounded-full bg-primary-background_light outline-none data-[state=checked]:bg-black dark:bg-white/50"
-          id="theme-mode"
-          onCheckedChange={toggleTheme}
-          checked={theme === 'dark'}
-        >
-          <Thumb className="block h-[20px] w-[20px] translate-x-0.5 rounded-full bg-black transition-transform duration-100 will-change-transform data-[state=checked]:translate-x-[18px] dark:bg-white" />
-        </Root>
+        <label className="switch">
+          <input
+            type="checkbox"
+            checked={theme === 'dark'}
+            onChange={handleToggle}
+            className="hidden"
+          />
+          <div className="slider"></div>
+        </label>
         <MoonIcon className="h-5 w-5 text-secondary-color dark:text-white/50" />
       </div>
     </div>

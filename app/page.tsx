@@ -10,9 +10,9 @@ export default function Home() {
         <p>Explore your tasks effortlessly by navigating through boards.</p>
         <Link
           className="hover:text-primary-hover text-primary-color underline transition"
-          href="/board/1"
+          href="/login"
         >
-          Go to Boards
+          Go to Login
         </Link>
       </div>
     </main>

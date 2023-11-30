@@ -1,15 +1,13 @@
 import { ArrowLeftIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
+import { Suspense } from 'react';
 import { signIn, signUp } from '../lib/actions/authAction';
 import { Logo } from '../ui/logo';
+import { Message } from './Message';
 
-export default function Login({
-  searchParams,
-}: {
-  searchParams: { message: string };
-}) {
+export default function Login() {
   return (
-    <div className="mx-auto flex h-screen w-screen flex-1 flex-col items-center justify-center gap-2 px-8 sm:max-w-md">
+    <div className="mx-auto flex h-screen w-screen flex-1 flex-col items-center justify-center gap-2 px-8 md:max-w-md">
       <Link
         href="/"
         className="group absolute left-8 top-8 flex items-center rounded-md px-4 py-2 text-sm no-underline"
@@ -56,9 +54,9 @@ export default function Login({
         >
           Sign Up
         </button>
-        {searchParams?.message && (
-          <p className="mt-4 p-4 text-center">{searchParams.message}</p>
-        )}
+        <Suspense>
+          <Message />
+        </Suspense>
       </form>
     </div>
   );

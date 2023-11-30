@@ -3,7 +3,6 @@
 import { Task } from '@/app/lib/definition';
 import { useTaskModal } from '@/hooks/useTaskModal';
 import Modal from '../Modal';
-import { StatusSelect } from './NewTaskModal';
 
 export function TaskModal({ task }: { task: Task | null }) {
   const { isOpen, onClose } = useTaskModal();
@@ -45,7 +44,6 @@ export function TaskModal({ task }: { task: Task | null }) {
             <label className="mb-1 block" htmlFor="status">
               Status
             </label>
-            <StatusSelect value={task.status} />
           </div>
         </form>
       </div>

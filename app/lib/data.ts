@@ -5,8 +5,10 @@ import { createClient } from './supabase/server';
 import { getUserIdServer } from './utils';
 
 export async function getBoards(): Promise<Omit<Board, 'tasks'>[]> {
+  const cookieData = cookies();
+
   try {
-    const supabase = createClient(cookies());
+    const supabase = createClient(cookieData);
     const id = await getUserIdServer();
 
     const { data, error } = await supabase
@@ -27,7 +29,9 @@ export async function getBoards(): Promise<Omit<Board, 'tasks'>[]> {
 }
 
 export async function getBoardName(id: string) {
-  const supabase = createClient(cookies());
+  const cookieData = cookies();
+
+  const supabase = createClient(cookieData);
   const { data } = await supabase
     .from('projects')
     .select('project_name')
@@ -37,13 +41,16 @@ export async function getBoardName(id: string) {
   return data?.project_name || '';
 }
 
-export async function getColumns(project_id: string): Promise<Column[]> {
-  const supabase = createClient(cookies());
+export async function getColumns(project_id: string): Promise<Column> {
+  const cookieData = cookies();
+
+  const supabase = createClient(cookieData);
 
   const { data } = await supabase
     .from('columns')
     .select('id, column_name, column_color')
-    .eq('project_id', project_id);
+    .eq('project_id', project_id)
+    .single();
 
   if (data === null) {
     return redirect('/board?message=Something went wrong');
@@ -53,7 +60,9 @@ export async function getColumns(project_id: string): Promise<Column[]> {
 }
 
 export async function getTasks(project_id: string): Promise<Task[]> {
-  const supabase = createClient(cookies());
+  const cookieData = cookies();
+
+  const supabase = createClient(cookieData);
 
   const { data, error } = await supabase
     .from('tasks')

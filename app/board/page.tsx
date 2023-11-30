@@ -1,5 +1,7 @@
 import { TopBar } from '../ui/TopBar/top-bar';
 
+export const dynamic = 'auto';
+
 export default function Page() {
   return (
     <main className="h-full">

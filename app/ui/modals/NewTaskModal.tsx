@@ -1,39 +1,20 @@
 'use client';
 
-import {
-  ChevronDownIcon,
-  PlusIcon,
-  XMarkIcon,
-} from '@heroicons/react/24/solid';
-import {
-  Content,
-  Icon,
-  Item,
-  ItemIndicator,
-  ItemText,
-  Portal,
-  Root,
-  Trigger,
-  Value,
-  Viewport,
-} from '@radix-ui/react-select';
+import { PlusIcon, XMarkIcon } from '@heroicons/react/24/solid';
 
 import { useNewTaskModal } from '@/hooks/useNewTaskModal';
-import { CheckIcon } from '@heroicons/react/24/outline';
-import { useState } from 'react';
 import { FieldValues, useFieldArray, useForm } from 'react-hook-form';
 import Input from '../Input';
 import Modal from '../Modal';
+import { Select } from '../Select';
 
 export function NewTaskModal() {
   const { isOpen, onClose } = useNewTaskModal();
-  const [isLoading, setIsLoading] = useState(false);
 
   const { control, register, handleSubmit } = useForm<FieldValues>({
     defaultValues: {
       task_name: '',
       description: '',
-      subtasks: [{ subtask_name: '' }],
       status: '',
     },
   });
@@ -69,11 +50,11 @@ export function NewTaskModal() {
             Description
           </label>
           <textarea
-            name="Description"
             id="description"
             rows={6}
             placeholder="e.g. It's always good to take a break. This 15 minute break will recharge the batteries a little"
             className="w-full resize-none  rounded-md border border-gray-950 bg-transparent p-2 placeholder:text-gray-500 focus:outline-none dark:border-gray-50"
+            {...register('description')}
           />
         </div>
         <div>
@@ -109,7 +90,9 @@ export function NewTaskModal() {
           <label className="mb-1 block" htmlFor="status">
             Status
           </label>
-          <StatusSelect />
+          <Select id="status" {...register('status', { required: true })}>
+            <option value="hello">Hello</option>
+          </Select>
         </div>
         <button
           type="submit"
@@ -121,49 +104,3 @@ export function NewTaskModal() {
     </Modal>
   );
 }
-
-export const StatusSelect = ({ value }: { value?: string }) => {
-  return (
-    <Root defaultValue={value}>
-      <Trigger
-        className="flex w-full flex-row items-center justify-between rounded-md border border-neutral-500 bg-transparent p-2"
-        aria-label="Status"
-      >
-        <Value placeholder="Select a Status" />
-        <Icon>
-          <ChevronDownIcon className="h-5 w-5" />
-        </Icon>
-      </Trigger>
-      <Portal>
-        <Content
-          position="popper"
-          className="bg-primary-background w-full rounded-md"
-        >
-          <Viewport className="w-[27rem] p-2">
-            <Item
-              className="flex w-full flex-row items-center justify-between gap-x-2"
-              value="TODO"
-            >
-              <ItemText>TODO</ItemText>
-              <ItemIndicator>
-                <CheckIcon className="h-5 w-5" />
-              </ItemIndicator>
-            </Item>
-            <Item className="flex flex-row items-center gap-x-2" value="DOING">
-              <ItemText>DOING</ItemText>
-              <ItemIndicator>
-                <CheckIcon className="h-5 w-5" />
-              </ItemIndicator>
-            </Item>
-            <Item className="flex flex-row items-center gap-x-2" value="DONE">
-              <ItemText>DONE</ItemText>
-              <ItemIndicator>
-                <CheckIcon className="h-5 w-5" />
-              </ItemIndicator>
-            </Item>
-          </Viewport>
-        </Content>
-      </Portal>
-    </Root>
-  );
-};

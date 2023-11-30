@@ -1,6 +1,5 @@
 import { PlusIcon } from '@heroicons/react/24/solid';
 
-import { getBoardName, getColumns, getTasks } from '@/app/lib/data';
 import { Column, Task } from '@/app/lib/definition';
 import { TopBar } from '@/app/ui/TopBar/top-bar';
 import { TaskCard } from '@/app/ui/board/TaskCard';
@@ -36,18 +35,19 @@ async function KanbanBoard({
   columnOrder,
 }: {
   tasks: Task[];
-  columnOrder: Column[];
+  columnOrder: Column;
 }) {
   return (
-    <div className="flex h-full flex-row gap-8 overflow-x-scroll">
-      {columnOrder.map((status) => (
+    <div className="flex h-full flex-1 flex-row gap-8">
+      {columnOrder.column_name.map((columnName, index) => (
         <Column
-          key={status.id}
-          tasks={tasks.filter((task) => task.status === status.column_name)}
-          status={status.column_name}
-          color={status.column_color}
+          key={columnName}
+          tasks={tasks.filter((task) => task.status === columnName)}
+          status={columnName}
+          color={columnOrder.column_color[index]}
         />
       ))}
+
       <div className="flex h-full w-full flex-1 items-center justify-center rounded-md bg-primary-background_light p-4 dark:bg-primary-background_dark">
         <button key="new-column" className="flex flex-row items-center gap-x-2">
           <PlusIcon className="h-5 w-5" />
@@ -59,17 +59,11 @@ async function KanbanBoard({
 }
 
 export default async function Page({ params }: { params: { id: string } }) {
-  const [tasks, columnOrder, boardName] = await Promise.all([
-    getTasks(params.id),
-    getColumns(params.id),
-    getBoardName(params.id),
-  ]);
-
   return (
     <div className="min-h-screen bg-secondary-background_light dark:bg-secondary-background_dark">
-      <TopBar name={boardName} />
-      <div className="h-full p-8 pr-0">
-        <KanbanBoard tasks={tasks} columnOrder={columnOrder} />
+      <TopBar name={'hello'} />
+      <div className="h-full overflow-x-auto p-8 pr-0">
+        {/* <KanbanBoard tasks={[]} columnOrder={[]} /> */}
       </div>
     </div>
   );

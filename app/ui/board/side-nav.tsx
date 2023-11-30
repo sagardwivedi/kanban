@@ -6,7 +6,7 @@ import { Logo } from '../logo';
 import { ThemeChanger } from '../theme-changer';
 import { ShowNavChanger } from './shownovchanger';
 
-export function SideNav({ children }: { children: React.ReactNode }) {
+export function SideNav({ children }: { children?: React.ReactNode }) {
   const { isOpen } = useSidebarHide();
 
   return (

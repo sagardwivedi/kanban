@@ -16,8 +16,8 @@ export interface Task {
 
 export interface Column {
   id: number;
-  column_name: string;
-  column_color: string;
+  column_name: string[];
+  column_color: string[];
 }
 
 export interface Board {

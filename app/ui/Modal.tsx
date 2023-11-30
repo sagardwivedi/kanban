@@ -1,3 +1,4 @@
+import { XMarkIcon } from '@heroicons/react/20/solid';
 import {
   Content,
   Description,
@@ -5,6 +6,7 @@ import {
   Portal,
   Root,
   Title,
+  Close,
 } from '@radix-ui/react-dialog';
 
 interface ModalProps {
@@ -48,6 +50,28 @@ const Modal: React.FC<ModalProps> = ({
               {description}
             </Description>
             <div>{children}</div>
+            <Close asChild>
+              <button
+                className="
+                absolute 
+                right-[10px] 
+                top-[10px] 
+                inline-flex 
+                h-[25px] 
+                w-[25px] 
+                appearance-none 
+                items-center 
+                justify-center 
+                rounded-full 
+                text-neutral-400 
+                hover:text-white 
+                focus:outline-none
+              "
+                aria-label="Close"
+              >
+                <XMarkIcon />
+              </button>
+            </Close>
           </Content>
         </Overlay>
       </Portal>
