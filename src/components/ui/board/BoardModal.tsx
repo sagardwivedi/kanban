@@ -1,13 +1,14 @@
 'use client';
 
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+
 import { postBoard } from '@/actions/crudAction';
 import { Button } from '@/components/Button';
 import Input from '@/components/Input';
 import { Modal } from '@/components/Modal';
 import { useBoardModal } from '@/hooks/useNewTaskModal';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
-import { z } from 'zod';
 
 const BoardSchema = z.object({
   board: z.string().min(1, { message: 'Please enter board name' }),

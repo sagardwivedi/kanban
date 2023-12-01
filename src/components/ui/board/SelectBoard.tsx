@@ -1,20 +1,20 @@
 'use client';
 
 import { ChevronDownIcon } from '@heroicons/react/24/solid';
-import classNames from 'classnames'; // Assuming you have a classnames library
 import { useParams, useRouter } from 'next/navigation';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useBoardModal } from '@/hooks/useNewTaskModal';
-import { Board } from '@/lib/definition';
 import { useOutsideClickListener } from '@/hooks/useOutSideClickListener';
+import { Board } from '@/lib/definition';
+import { cn } from '@/lib/utils';
 
 export function NewBoard() {
   const { onOpen } = useBoardModal();
 
   return (
     <button onClick={onOpen} className="p-1 text-primary-color">
-      New Board
+     + New Board
     </button>
   );
 }
@@ -52,15 +52,15 @@ export function SelectBoard({ boards }: { boards: Board[] }) {
       >
         {selectedBoard ? selectedBoard.project_name : 'Select Board'}
         <ChevronDownIcon
-          className={classNames('h-5 w-5 text-primary-color', {
+          className={cn('h-5 w-5 text-primary-color', {
             'rotate-180': isOpen,
           })}
         />
       </p>
       {isOpen && (
         <div className="absolute top-8 w-full rounded-md bg-primary-background_light p-2 shadow dark:bg-primary-background_dark">
-          {boards.map((board) => (
-            <>
+          <>
+            {boards.map((board) => (
               <p
                 key={board.project_id}
                 onClick={() => handleBoardClick(board)}
@@ -70,9 +70,9 @@ export function SelectBoard({ boards }: { boards: Board[] }) {
               >
                 {board.project_name}
               </p>
-              <NewBoard />
-            </>
-          ))}
+            ))}
+            <NewBoard />
+          </>
         </div>
       )}
     </div>

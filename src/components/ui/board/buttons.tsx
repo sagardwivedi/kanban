@@ -1,9 +1,10 @@
 'use client';
 
-import { useNewTaskModal } from '@/hooks/useBoardModal';
-import { useBoardModal } from '@/hooks/useNewTaskModal';
 import { PlusIcon, ViewColumnsIcon } from '@heroicons/react/24/outline';
 import { usePathname } from 'next/navigation';
+
+import { useNewTaskModal } from '@/hooks/useBoardModal';
+import { useBoardModal } from '@/hooks/useNewTaskModal';
 
 export function NewBoardButton() {
   const { onOpen } = useBoardModal();

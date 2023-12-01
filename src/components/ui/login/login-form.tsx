@@ -1,10 +1,9 @@
 'use client';
 
-import { login } from '@/actions/authAction';
+import { login, signUp } from '@/actions/authAction';
 import { Button } from '@/components/Button';
 import Input from '@/components/Input';
 import { zodResolver } from '@hookform/resolvers/zod';
-import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
@@ -53,12 +52,11 @@ export function LoginForm() {
         {...register('password', { required: true })}
       />
       <Button isSubmitting={isSubmitting} text="Log In" />
-      <div className="text-center">
-        Don&apos;t have an account?{' '}
-        <Link href={'/signup'} className="text-primary-color">
-          Sign Up
-        </Link>
-      </div>
+      <Button
+        text="Sign Up"
+        formAction={signUp}
+        className="border border-primary-color bg-transparent text-black active:bg-primary-background_dark active:text-white "
+      />
     </form>
   );
 }

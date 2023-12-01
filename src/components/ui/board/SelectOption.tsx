@@ -1,10 +1,11 @@
 'use client';
 
+import { EllipsisVerticalIcon } from '@heroicons/react/20/solid';
+import { useParams } from 'next/navigation';
+
 import { logOut } from '@/actions/authAction';
 import { deleteBoard } from '@/actions/crudAction';
 import { useOutsideClickListener } from '@/hooks/useOutSideClickListener';
-import { EllipsisVerticalIcon } from '@heroicons/react/20/solid';
-import { useParams } from 'next/navigation';
 
 export function SelectOption() {
   const { isOpen, selectOptionRef, toggle } = useOutsideClickListener();

@@ -1,5 +1,7 @@
 import { forwardRef } from 'react';
 
+import { cn } from '@/lib/utils';
+
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   isSubmitting?: boolean;
@@ -7,13 +9,16 @@ export interface ButtonProps
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ isSubmitting, text, ...props }, ref) => {
+  ({ isSubmitting, className, text, ...props }, ref) => {
     return (
       <button
         disabled={isSubmitting}
         aria-disabled={isSubmitting}
         ref={ref}
-        className="w-full rounded-md bg-primary-color p-2 text-white disabled:opacity-75"
+        className={cn(
+          'w-full rounded-md bg-primary-color p-2 text-white disabled:opacity-75',
+          className,
+        )}
       >
         {text}
       </button>

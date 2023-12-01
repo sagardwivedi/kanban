@@ -1,7 +1,8 @@
 'use client';
 
-import { Board } from '@/lib/definition';
 import { useParams } from 'next/navigation';
+
+import { Board } from '@/lib/definition';
 
 export function BoardName({ boards }: { boards: Board[] }) {
   const params = useParams();

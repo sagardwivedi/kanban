@@ -1,6 +1,7 @@
+import { Suspense } from 'react';
+
 import { Stripe } from '@/components/Logo';
 import { getBoards } from '@/lib/data';
-import { Suspense } from 'react';
 import { SelectBoard } from './SelectBoard';
 import { SelectOption } from './SelectOption';
 import { AddNewTaskButton } from './buttons';
