@@ -11,6 +11,19 @@ export async function getUserId(): Promise<string> {
   return data.user?.id || '';
 }
 
+export async function getBoardName(id: string) {
+  const cookieStore = cookies();
+  const supabase = createClient(cookieStore);
+
+  const { data } = await supabase
+    .from('projects')
+    .select('project_name')
+    .eq('project_id', id)
+    .single();
+
+  return data?.project_name || '';
+}
+
 export async function getBoards(): Promise<Board[]> {
   const cookieStore = cookies();
   const supabase = createClient(cookieStore);

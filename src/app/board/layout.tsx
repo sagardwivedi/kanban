@@ -2,11 +2,13 @@ import { ModalProvider } from '@/Providers/ModalProvider';
 import { ThemeProvider } from '@/Providers/ThemeProvider';
 import { SideNav } from '@/components/ui/board/SideNav';
 import { TopBar } from '@/components/ui/board/TopBar';
+import { getBoardName } from '@/lib/data';
 
-export default function Boardlayout({
+export default async function Boardlayout({
   children,
 }: {
   children: React.ReactNode;
+  params: { id: string };
 }) {
   return (
     <ThemeProvider>
@@ -17,7 +19,7 @@ export default function Boardlayout({
         </div>
         <div className="flex-grow">
           <TopBar />
-          <div className="dark:bg-primary-background_dark bg-primary-background_light h-full md:overflow-y-auto">
+          <div className="h-full bg-secondary-background_light dark:bg-secondary-background_dark md:overflow-y-auto">
             {children}
           </div>
         </div>

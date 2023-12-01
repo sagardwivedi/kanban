@@ -15,7 +15,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         <input
           type={type}
           id={id}
-          className="focus:outline-primary-color bg-transparent w-full rounded-md border p-2"
+          className="w-full rounded-md border bg-transparent p-2 focus:outline-primary-color"
           ref={ref}
           {...props}
         />

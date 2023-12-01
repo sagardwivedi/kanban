@@ -28,7 +28,21 @@ export function Modal({
     <Root open={isOpen} defaultOpen={isOpen} onOpenChange={onChange}>
       <Portal>
         <Overlay className="fixed inset-0 grid place-items-center overflow-y-auto bg-black/50">
-          <Content className="dark:bg-secondary-background_dark bg-secondary-background_light h-full max-h-full w-full rounded-md border border-neutral-700 p-[25px] drop-shadow-md focus:outline-none md:h-auto md:max-h-[85vh] md:w-[90vw] md:max-w-[450px]">
+          <Content
+            className="
+            
+            h-auto 
+            w-[90vw]
+            max-w-[500px]
+            rounded-md
+            border 
+            border-neutral-700 
+            bg-secondary-background_light 
+            p-[25px] 
+            drop-shadow-md 
+            focus:outline-none 
+            dark:bg-secondary-background_dark"
+          >
             <Title className="mb-4 text-xl font-bold">{title}</Title>
             <Description className="mb-5 text-sm leading-normal">
               {description}
@@ -36,7 +50,7 @@ export function Modal({
             <div>{children}</div>
             <Close asChild>
               <button
-                className="text-secondary-color absolute right-[15px] top-[25px] inline-flex h-[25px] w-[25px] appearance-none items-center justify-center hover:text-white"
+                className="absolute right-[15px] top-[25px] inline-flex h-[25px] w-[25px] appearance-none items-center justify-center text-secondary-color hover:text-white"
                 aria-label="close"
               >
                 <XMarkIcon />

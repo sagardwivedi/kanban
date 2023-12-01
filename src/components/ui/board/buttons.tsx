@@ -13,7 +13,7 @@ export function NewBoardButton() {
       onClick={onOpen}
       className="mt-2 flex cursor-pointer flex-row items-center gap-x-3 pl-8"
     >
-      <ViewColumnsIcon className="text-primary-color h-5 w-5" />
+      <ViewColumnsIcon className="h-5 w-5 text-primary-color" />
       <button className="text-primary-color">+ Create New Board</button>
     </div>
   );
@@ -30,10 +30,10 @@ export function AddNewTaskButton() {
       {isProject && (
         <button
           onClick={onOpen}
-          className="bg-primary-color flex select-none flex-row items-center gap-x-1 rounded-full px-3 py-2 text-white"
+          className="flex select-none flex-row items-center gap-x-1 rounded-full bg-primary-color px-3 py-2 text-white"
         >
           <PlusIcon className="h-5 w-5" />
-          <p>Add New Task</p>
+          <p className="max-md:hidden">Add New Task</p>
         </button>
       )}
     </>

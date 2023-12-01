@@ -18,5 +18,14 @@ export async function postBoard(formData: BoardField) {
     .insert({ project_name: formData.board, user_id: id });
 
   revalidatePath('/board');
+}
+
+export async function deleteBoard(id: string) {
+  const cookieStore = cookies();
+  const supabase = createClient(cookieStore);
+
+  await supabase.from('projects').delete().eq('project_id', id);
+
+  revalidatePath('/board');
   redirect('/board');
 }

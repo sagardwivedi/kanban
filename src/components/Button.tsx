@@ -13,7 +13,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         disabled={isSubmitting}
         aria-disabled={isSubmitting}
         ref={ref}
-        className="bg-primary-color w-full rounded-md p-2 text-white disabled:opacity-75"
+        className="w-full rounded-md bg-primary-color p-2 text-white disabled:opacity-75"
       >
         {text}
       </button>
