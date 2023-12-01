@@ -1,13 +1,11 @@
 import type { Config } from 'tailwindcss';
 
 const config: Config = {
-  content: ['./components/**/*.{ts,tsx}', './app/**/*.{ts,tsx}'],
-  darkMode: 'class',
-  safelist: [
-    {
-      pattern: /([a-zA-Z]+)-./,
-    },
+  content: [
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
@@ -21,10 +19,17 @@ const config: Config = {
           background_light: '#ffffff',
           color: '#515151',
         },
-        white: '#fff',
+      },
+      padding: {
+        13: '50px',
+        26: '100px',
+      },
+      gap: {
+        26: '100px',
       },
     },
   },
   plugins: [],
 };
+
 export default config;
