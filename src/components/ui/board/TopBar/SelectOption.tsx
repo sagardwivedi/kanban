@@ -6,6 +6,7 @@ import { useParams } from 'next/navigation';
 import { logOut } from '@/actions/authAction';
 import { deleteBoard } from '@/actions/crudAction';
 import { useOutsideClickListener } from '@/hooks/useOutSideClickListener';
+import { cn } from '@/lib/utils';
 
 export function SelectOption() {
   const { isOpen, selectOptionRef, toggle } = useOutsideClickListener();
@@ -22,7 +23,12 @@ export function SelectOption() {
         <EllipsisVerticalIcon className="h-8 w-8 text-white/50" />
       </div>
       {isOpen && (
-        <div className="absolute right-4 w-36 rounded-md bg-primary-background_light p-2 shadow dark:bg-primary-background_dark">
+        <div
+          className={cn(
+            'absolute right-4 w-36 rounded-md bg-primary-background_light p-2 shadow dark:bg-primary-background_dark',
+            isOpen ? 'animate-contentShow' : '',
+          )}
+        >
           {params.id && (
             <p
               onClick={async () => handleDelete(params.id)}

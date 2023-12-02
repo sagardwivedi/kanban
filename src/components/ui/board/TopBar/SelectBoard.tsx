@@ -4,10 +4,11 @@ import { ChevronDownIcon } from '@heroicons/react/24/solid';
 import { useParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-import { useBoardModal } from '@/hooks/useNewTaskModal';
+
 import { useOutsideClickListener } from '@/hooks/useOutSideClickListener';
 import { Board } from '@/lib/definition';
 import { cn } from '@/lib/utils';
+import { useBoardModal } from '@/hooks/useBoardModal';
 
 export function NewBoard() {
   const { onOpen } = useBoardModal();

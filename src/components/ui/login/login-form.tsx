@@ -55,7 +55,7 @@ export function LoginForm() {
       <Button
         text="Sign Up"
         formAction={signUp}
-        className="border border-primary-color bg-transparent text-black active:bg-primary-background_dark active:text-white "
+        className="border border-primary-color bg-transparent text-black active:bg-primary-background_dark  active:text-white dark:text-white "
       />
     </form>
   );

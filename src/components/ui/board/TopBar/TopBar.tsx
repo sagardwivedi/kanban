@@ -1,28 +1,30 @@
-import { Suspense } from 'react';
-
 import { Stripe } from '@/components/Logo';
 import { getBoards } from '@/lib/data';
+import { BoardName } from './BoardName';
 import { SelectBoard } from './SelectBoard';
 import { SelectOption } from './SelectOption';
-import { AddNewTaskButton } from './buttons';
-import { BoardName } from './BoardName';
+import { AddNewTaskButton } from '../buttons';
+import { Suspense } from 'react';
 
 export async function TopBar() {
   const boards = await getBoards();
 
   return (
-    <div className="flex h-20 flex-row items-center justify-between bg-primary-background_light px-4 dark:bg-primary-background_dark md:px-5">
+    <div className="flex h-20 flex-row items-center justify-between border-b bg-primary-background_light px-4 dark:border-white/0 dark:bg-primary-background_dark md:px-5">
+      {/* Only show on small screen with width less than 768px */}
       <div className="flex flex-row items-center gap-4 md:hidden">
         <Stripe />
-        <Suspense>
+        <Suspense fallback={<div className='w-36 bg-gray-500'></div>}>
           <SelectBoard boards={boards} />
         </Suspense>
       </div>
+
+      {/* Only show on big screen with width more than 768px */}
       <div className="max-md:hidden">
-        <Suspense>
-          <BoardName boards={boards} />
-        </Suspense>
+        <BoardName boards={boards} />
       </div>
+
+      {/* Always show */}
       <div className="flex items-center justify-between gap-x-4">
         <AddNewTaskButton />
         <SelectOption />

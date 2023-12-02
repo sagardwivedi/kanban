@@ -8,7 +8,7 @@ import { postBoard } from '@/actions/crudAction';
 import { Button } from '@/components/Button';
 import Input from '@/components/Input';
 import { Modal } from '@/components/Modal';
-import { useBoardModal } from '@/hooks/useNewTaskModal';
+import { useBoardModal } from '@/hooks/useBoardModal';
 
 const BoardSchema = z.object({
   board: z.string().min(1, { message: 'Please enter board name' }),

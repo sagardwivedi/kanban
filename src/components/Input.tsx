@@ -1,3 +1,4 @@
+import { cn } from '@/lib/utils';
 import { forwardRef } from 'react';
 
 export interface InputProps
@@ -15,7 +16,10 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         <input
           type={type}
           id={id}
-          className="w-full rounded-md border bg-transparent p-2 focus:outline-primary-color"
+          className={cn(
+            'w-full rounded-md border bg-transparent p-2 focus:outline-primary-color',
+            className,
+          )}
           ref={ref}
           {...props}
         />

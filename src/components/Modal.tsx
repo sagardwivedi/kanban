@@ -27,9 +27,10 @@ export function Modal({
   return (
     <Root open={isOpen} defaultOpen={isOpen} onOpenChange={onChange}>
       <Portal>
-        <Overlay className="fixed inset-0 grid p-5 place-items-center overflow-y-auto bg-black/50">
+        <Overlay className="fixed data-[state=open]:animate-overlayShow inset-0 grid p-5 place-items-center overflow-y-auto bg-black/50">
           <Content
             className="
+            data-[state=open]:animate-contentShow
             h-auto 
             w-[90vw]
             max-w-[500px]

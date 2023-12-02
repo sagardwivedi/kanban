@@ -1,6 +1,6 @@
 'use server';
 
-import { BoardField } from '@/components/ui/board/BoardModal';
+import { BoardField } from '@/components/ui/board/Sidebar/BoardModal';
 import { getUserId } from '@/lib/data';
 import { createClient } from '@/lib/supbase/server';
 import { revalidatePath } from 'next/cache';

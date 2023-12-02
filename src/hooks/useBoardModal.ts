@@ -1,12 +1,12 @@
 import { create } from 'zustand';
 
-interface NewTaskModalState {
+interface BoardModalState {
   isOpen: boolean;
   onOpen: () => void;
   onClose: () => void;
 }
 
-export const useNewTaskModal = create<NewTaskModalState>()((set) => ({
+export const useBoardModal = create<BoardModalState>()((set) => ({
   isOpen: false,
   onOpen: () => set({ isOpen: true }),
   onClose: () => set({ isOpen: false }),
