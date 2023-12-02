@@ -11,7 +11,7 @@ import {
 
 interface ModalProps {
   title: string;
-  description?: string;
+  description?: string | null;
   isOpen: boolean;
   children: React.ReactNode;
   onChange: (open: boolean) => void;

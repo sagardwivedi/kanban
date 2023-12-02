@@ -1,15 +1,15 @@
 'use client';
 
 import { PlusIcon, XMarkIcon } from '@heroicons/react/24/solid';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { FieldValues, useFieldArray, useForm } from 'react-hook-form';
+import { z } from 'zod';
 
 import { Button } from '@/components/Button';
 import Input from '@/components/Input';
 import { Modal } from '@/components/Modal';
-
-import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
 import { useNewTaskModal } from '@/hooks/useNewTaskModal';
+import { postTask } from '@/actions/crudAction';
 
 const TaskSchema = z.object({
   task_name: z.string().min(1, { message: 'Task title is required' }),
@@ -19,18 +19,19 @@ const TaskSchema = z.object({
       subtask_name: z.string().min(1, { message: 'Subtask name is required' }),
     }),
   ),
-  status: z.enum(['pending', 'in progress', 'completed']),
+  status: z.enum(['Pending', 'In Progress', 'Completed']),
 });
 
 export type TaskField = z.infer<typeof TaskSchema>;
 
 export function NewTaskModal() {
-  const { isOpen, onClose } = useNewTaskModal();
+  const { isOpen, onClose, project_id } = useNewTaskModal();
 
   const {
     control,
     register,
     handleSubmit,
+    reset,
     formState: { isSubmitting },
   } = useForm<TaskField>({
     resolver: zodResolver(TaskSchema),
@@ -38,7 +39,7 @@ export function NewTaskModal() {
       description: '',
       subtasks: [{ subtask_name: '' }],
       task_name: '',
-      status: 'pending',
+      status: 'Pending',
     },
     shouldUseNativeValidation: true,
   });
@@ -54,11 +55,18 @@ export function NewTaskModal() {
     }
   };
 
-  const onSubmit = (data: FieldValues) => console.log('data', data);
+  const FormSubmit = async (data: TaskField) => {
+    await postTask(project_id, data);
+    reset()
+    onClose();
+  };
 
   return (
     <Modal title="Add New Task" isOpen={isOpen} onChange={onChange}>
-      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
+      <form
+        onSubmit={handleSubmit((data) => FormSubmit(data))}
+        className="flex flex-col gap-3"
+      >
         <Input
           label="Title"
           id="task_name"
@@ -119,19 +127,19 @@ export function NewTaskModal() {
           >
             <option
               className="bg-secondary-background_light text-black dark:bg-secondary-background_dark dark:text-white"
-              value="pending"
+              value="Pending"
             >
               Pending
             </option>
             <option
               className="bg-secondary-background_light text-black dark:bg-secondary-background_dark dark:text-white"
-              value="in progress"
+              value="In Progress"
             >
-              IN PROGRESS
+              In Progress
             </option>
             <option
               className="bg-secondary-background_light text-black dark:bg-secondary-background_dark dark:text-white"
-              value="completed"
+              value="Completed"
             >
               Completed
             </option>
@@ -140,7 +148,7 @@ export function NewTaskModal() {
         <Button
           isSubmitting={isSubmitting}
           text="Create Task"
-          className="rounded-full"
+          className="rounded-full disabled:bg-opacity-10"
         />
       </form>
     </Modal>

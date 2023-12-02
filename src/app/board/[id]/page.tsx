@@ -32,7 +32,7 @@ export default async function IndividualBoard({
 
   // Render the tasks data
   return (
-    <main className='flex gap-10 flex-row p-5'>
+    <main className="flex flex-row gap-5 p-5">
       <TaskColumn title="TODO" tasks={todoTasks} />
       <TaskColumn title="DOING" tasks={doingTasks} />
       <TaskColumn title="DONE" tasks={doneTasks} />

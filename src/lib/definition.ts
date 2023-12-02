@@ -12,12 +12,6 @@ export interface Task {
   subtasks: Subtask[];
 }
 
-export interface Column {
-  id: number;
-  column_name: string;
-  column_color: string;
-}
-
 export interface Board {
   project_id: string;
   project_name: string;

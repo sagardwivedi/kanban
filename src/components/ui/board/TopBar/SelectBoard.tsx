@@ -49,7 +49,7 @@ export function SelectBoard({ boards }: { boards: Board[] }) {
     <div className="relative w-36" ref={selectOptionRef}>
       <p
         onClick={toggle}
-        className={'flex cursor-pointer items-center justify-between gap-x-2'}
+        className={'flex text-2xl font-bold cursor-pointer items-center justify-between gap-x-2'}
       >
         {selectedBoard ? selectedBoard.project_name : 'Select Board'}
         <ChevronDownIcon

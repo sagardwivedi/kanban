@@ -20,7 +20,7 @@ export default async function Boardlayout({
       </div>
       <div className="flex-grow">
         <TopBar />
-        <div className="h-full bg-secondary-background_light dark:bg-secondary-background_dark md:overflow-y-auto">
+        <div className="h-full overflow-x-auto bg-secondary-background_light dark:bg-secondary-background_dark">
           {children}
         </div>
       </div>
