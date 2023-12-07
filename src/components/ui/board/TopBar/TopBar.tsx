@@ -1,10 +1,11 @@
+import { Suspense } from 'react';
+
 import { Stripe } from '@/components/Logo';
 import { getBoards } from '@/lib/data';
 import { BoardName } from './BoardName';
 import { SelectBoard } from './SelectBoard';
-import { SelectOption } from './SelectOption';
 import { AddNewTaskButton } from '../buttons';
-import { Suspense } from 'react';
+import { DropDown } from './SelectOption';
 
 export async function TopBar() {
   const boards = await getBoards();
@@ -14,7 +15,7 @@ export async function TopBar() {
       {/* Only show on small screen with width less than 768px */}
       <div className="flex flex-row items-center gap-4 md:hidden">
         <Stripe />
-        <Suspense fallback={<div className='w-36 bg-gray-500'></div>}>
+        <Suspense fallback={<div className="w-36 bg-gray-500"></div>}>
           <SelectBoard boards={boards} />
         </Suspense>
       </div>
@@ -27,7 +28,7 @@ export async function TopBar() {
       {/* Always show */}
       <div className="flex items-center justify-between gap-x-4">
         <AddNewTaskButton />
-        <SelectOption />
+        <DropDown />
       </div>
     </div>
   );

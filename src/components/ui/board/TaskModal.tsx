@@ -2,6 +2,7 @@
 
 import { Modal } from '@/components/Modal';
 import { useTaskModal } from '@/hooks/useTaskModal';
+import { EllipsisVerticalIcon } from '@heroicons/react/24/outline';
 
 export function TaskModal() {
   const { isOpen, onClose, task } = useTaskModal();
@@ -22,8 +23,12 @@ export function TaskModal() {
       description={task.description}
       onChange={onChange}
       isOpen={isOpen}
+      showClose={false}
     >
       <div className="space-y-4">
+        <div>
+          <EllipsisVerticalIcon className="absolute right-8 top-8 h-8 cursor-pointer w-8" />
+        </div>
         <h2>Subtasks ({task.subtasks.length})</h2>
         <form className="space-y-4">
           <div className="flex flex-col gap-y-1">

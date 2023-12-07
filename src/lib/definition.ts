@@ -1,14 +1,17 @@
+type TaskStatus = 'Pending' | 'In Progress' | 'Completed';
+type SubtaskTask = 'Pending' | 'Completed';
+
 export interface Subtask {
   subtask_id: string;
   subtask_name: string;
-  status: string;
+  status: SubtaskTask;
 }
 
 export interface Task {
   task_id: string;
   task_name: string;
   description: string | null;
-  status: string;
+  status: TaskStatus;
   subtasks: Subtask[];
 }
 

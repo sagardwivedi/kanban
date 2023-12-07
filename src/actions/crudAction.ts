@@ -1,12 +1,13 @@
 'use server';
 
+import { revalidatePath } from 'next/cache';
+import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
+
 import { BoardField } from '@/components/ui/board/Sidebar/BoardModal';
 import { TaskField } from '@/components/ui/board/TopBar/NewTaskModal';
 import { getUserId } from '@/lib/data';
 import { createClient } from '@/lib/supbase/server';
-import { revalidatePath } from 'next/cache';
-import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
 
 export async function postBoard(formData: BoardField) {
   const cookieStore = cookies();
@@ -50,12 +51,10 @@ export async function postTask(id: string, task: TaskField) {
   // Insert each subtask from the 'subtasks' array into the 'subtasks' table
   if (data) {
     const subtaskInsertPromises = task.subtasks.map(async (subtaskName) => {
-      await supabase
-        .from('subtasks')
-        .insert({
-          task_id: data.task_id,
-          subtask_name: subtaskName.subtask_name,
-        });
+      await supabase.from('subtasks').insert({
+        task_id: data.task_id,
+        subtask_name: subtaskName.subtask_name,
+      });
     });
 
     // Wait for all subtask insertions to complete

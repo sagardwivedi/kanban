@@ -2,14 +2,14 @@
 
 import { PlusIcon, XMarkIcon } from '@heroicons/react/24/solid';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { FieldValues, useFieldArray, useForm } from 'react-hook-form';
+import { useFieldArray, useForm } from 'react-hook-form';
 import { z } from 'zod';
 
+import { postTask } from '@/actions/crudAction';
 import { Button } from '@/components/Button';
 import Input from '@/components/Input';
 import { Modal } from '@/components/Modal';
 import { useNewTaskModal } from '@/hooks/useNewTaskModal';
-import { postTask } from '@/actions/crudAction';
 
 const TaskSchema = z.object({
   task_name: z.string().min(1, { message: 'Task title is required' }),
@@ -57,7 +57,7 @@ export function NewTaskModal() {
 
   const FormSubmit = async (data: TaskField) => {
     await postTask(project_id, data);
-    reset()
+    reset();
     onClose();
   };
 
