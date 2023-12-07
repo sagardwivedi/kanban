@@ -1,13 +1,11 @@
 import type { Config } from 'tailwindcss';
 
 const config: Config = {
-  content: ['./components/**/*.{ts,tsx}', './app/**/*.{ts,tsx}'],
-  darkMode: 'class',
-  safelist: [
-    {
-      pattern: /([a-zA-Z]+)-./,
-    },
+  content: [
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
@@ -21,10 +19,34 @@ const config: Config = {
           background_light: '#ffffff',
           color: '#515151',
         },
-        white: '#fff',
+      },
+      padding: {
+        13: '50px',
+        26: '100px',
+      },
+      gap: {
+        26: '100px',
+      },
+      keyframes: {
+        overlayShow: {
+          from: { opacity: '0' },
+          to: { opacity: '1' },
+        },
+        contentShow: {
+          from: {
+            opacity: '0',
+            transform: 'scale(0.90)',
+          },
+          to: { opacity: '1', transform: 'scale(1)' },
+        },
+      },
+      animation: {
+        overlayShow: 'overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1)',
+        contentShow: 'contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1)',
       },
     },
   },
   plugins: [],
 };
+
 export default config;
