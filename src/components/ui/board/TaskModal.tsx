@@ -1,8 +1,11 @@
 'use client';
 
+import { Button } from '@/components/Button';
 import { Modal } from '@/components/Modal';
+import Dropdown from '@/components/Select';
 import { useTaskModal } from '@/hooks/useTaskModal';
 import { EllipsisVerticalIcon } from '@heroicons/react/24/outline';
+import { RemoveTask } from './buttons';
 
 export function TaskModal() {
   const { isOpen, onClose, task } = useTaskModal();
@@ -26,8 +29,10 @@ export function TaskModal() {
       showClose={false}
     >
       <div className="space-y-4">
-        <div>
-          <EllipsisVerticalIcon className="absolute right-8 top-8 h-8 cursor-pointer w-8" />
+        <div className="absolute right-8 top-8 h-8 w-8 ">
+          <Dropdown trigger={<EllipsisVerticalIcon className="h-8 w-8" />}>
+            <RemoveTask id={task.task_id} />
+          </Dropdown>
         </div>
         <h2>Subtasks ({task.subtasks.length})</h2>
         <form className="space-y-4">

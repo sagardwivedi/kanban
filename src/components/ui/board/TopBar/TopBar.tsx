@@ -4,8 +4,11 @@ import { Stripe } from '@/components/Logo';
 import { getBoards } from '@/lib/data';
 import { BoardName } from './BoardName';
 import { SelectBoard } from './SelectBoard';
-import { AddNewTaskButton } from '../buttons';
-import { DropDown } from './SelectOption';
+import { AddNewTaskButton, LogOutButton } from '../buttons';
+import { SelectOption } from './SelectOption';
+import { Button } from '@/components/Button';
+import { logOut } from '@/actions/authAction';
+import { Side } from './Side';
 
 export async function TopBar() {
   const boards = await getBoards();
@@ -27,8 +30,7 @@ export async function TopBar() {
 
       {/* Always show */}
       <div className="flex items-center justify-between gap-x-4">
-        <AddNewTaskButton />
-        <DropDown />
+        <Side />
       </div>
     </div>
   );

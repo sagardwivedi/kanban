@@ -64,3 +64,12 @@ export async function postTask(id: string, task: TaskField) {
   // Revalidate the path for the '/board/${id}' route, possibly for updating the UI
   revalidatePath(`/board/${id}`);
 }
+
+export async function deleteTask(id: string) {
+  const cookieStore = cookies();
+  const supabase = createClient(cookieStore);
+
+  await supabase.from('tasks').delete().eq('task_id', id);
+
+  revalidatePath('/board');
+}

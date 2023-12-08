@@ -70,3 +70,17 @@ export async function getTasks(id: string): Promise<ReturnType> {
 
   return { data, error };
 }
+
+export async function getAllTasks() {
+  const cookieStore = cookies();
+  const supabase = createClient(cookieStore);
+
+  const id = await getUserId();
+
+  const { data } = await supabase
+    .from('projects')
+    .select('project_name, tasks(task_name, status)')
+    .eq('user_id', id);
+
+  return data || [];
+}

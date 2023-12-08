@@ -1,17 +1,15 @@
-'use client'
-
-import { Select, SelectOption } from '@/components/Select';
+import Dropdown from '@/components/Select';
 import { EllipsisVerticalIcon } from '@heroicons/react/24/solid';
+import { LogOutButton } from '../buttons';
 
 function Trigger() {
   return <EllipsisVerticalIcon className="h-8 w-8 text-white/50" />;
 }
 
-export function DropDown() {
+export function SelectOption() {
   return (
-    <Select trigger={<Trigger />}>
-      <SelectOption>Delete Prohecj</SelectOption>
-      <SelectOption>Log Out</SelectOption>
-    </Select>
+    <Dropdown trigger={<Trigger />}>
+      <LogOutButton />
+    </Dropdown>
   );
 }

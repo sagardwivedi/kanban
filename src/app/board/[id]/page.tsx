@@ -33,9 +33,9 @@ export default async function IndividualBoard({
   // Render the tasks data
   return (
     <main className="flex flex-row gap-5 p-5">
-      <TaskColumn title="TODO" tasks={todoTasks} />
-      <TaskColumn title="DOING" tasks={doingTasks} />
-      <TaskColumn title="DONE" tasks={doneTasks} />
+      <TaskColumn columnColor='bg-[#48c4e4]' title="TODO" tasks={todoTasks} />
+      <TaskColumn columnColor='bg-[#7f6fdc]' title="DOING" tasks={doingTasks} />
+      <TaskColumn columnColor='bg-[#6cdfae]' title="DONE" tasks={doneTasks} />
     </main>
   );
 }
