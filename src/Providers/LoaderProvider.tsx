@@ -11,7 +11,6 @@ export const LoaderProvider = ({ children }: { children: React.ReactNode }) => {
         color="#6260c8"
         options={{ showSpinner: false }}
         showOnShallow
-
       />
     </>
   );

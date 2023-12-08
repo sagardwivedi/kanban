@@ -15,8 +15,10 @@ const TaskColumn: React.FC<TaskColumnProps> = ({
 }) => {
   return (
     <div className="min-w-[20rem] md:w-96">
-      <h2 className={`mb-5 tracking-widest flex items-center gap-2 dark:text-white/50 `}>
-        <div className={`${columnColor} w-3 h-3 rounded-full`}></div>
+      <h2
+        className={`mb-5 flex items-center gap-2 tracking-widest dark:text-white/50 `}
+      >
+        <div className={`${columnColor} h-3 w-3 rounded-full`}></div>
         {title} ({tasks.length})
       </h2>
       {tasks.map((task) => (

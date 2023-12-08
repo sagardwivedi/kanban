@@ -5,7 +5,6 @@ import { ModalProvider } from '@/Providers/ModalProvider';
 import { ThemeProvider } from '@/Providers/ThemeProvider';
 import './globals.css';
 
-
 export const metadata: Metadata = {
   title: 'Task Vista',
 };

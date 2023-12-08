@@ -20,7 +20,11 @@ export const useOutsideClickListener = () => {
   const handleClick = useCallback(
     (event: MouseEvent) => {
       // Check if the component is open, the ref exists, and the click is outside of it
-      if (isOpen && ref.current && !ref.current.contains(event.target as Node)) {
+      if (
+        isOpen &&
+        ref.current &&
+        !ref.current.contains(event.target as Node)
+      ) {
         setIsOpen(false);
       }
     },

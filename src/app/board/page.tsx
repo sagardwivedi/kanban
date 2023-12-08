@@ -4,7 +4,9 @@ export default async function Board() {
   const projects = await getAllTasks();
 
   if (projects.length === 0) {
-    return <div className='flex justify-center items-center h-full'>No Stats</div>
+    return (
+      <div className="flex h-full items-center justify-center">No Stats</div>
+    );
   }
 
   return (

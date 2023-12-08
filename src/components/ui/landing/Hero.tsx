@@ -12,11 +12,11 @@ export function Hero() {
             Get Started
           </Link>
         </div>
-        <h1 className="h-auto animate-hero w-full max-w-5xl text-center text-9xl font-bold uppercase leading-[1.1em] md:absolute md:inset-y-[150px] md:text-[11.5rem]">
+        <h1 className="animate-hero h-auto w-full max-w-5xl text-center text-9xl font-bold uppercase leading-[1.1em] md:absolute md:inset-y-[150px] md:text-[11.5rem]">
           Task vista
         </h1>
       </div>
-      <div className="absolute animate-hero -bottom-[400px] left-0 top-[100px] z-10 h-[64rem] w-[64rem] rounded-full bg-secondary-background_light dark:bg-secondary-background_dark md:left-[250px]"></div>
+      <div className="animate-hero absolute -bottom-[400px] left-0 top-[100px] z-10 h-[64rem] w-[64rem] rounded-full bg-secondary-background_light dark:bg-secondary-background_dark md:left-[250px]"></div>
     </div>
   );
 }

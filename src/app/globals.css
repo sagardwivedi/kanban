@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .animate-hero {
-    animation: increaseSize 2s ease-in-out;
+  animation: increaseSize 2s ease-in-out;
 }
 
 @keyframes increaseSize {
