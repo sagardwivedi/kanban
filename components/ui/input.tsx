@@ -5,14 +5,15 @@ export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   error?: string[] | null;
+  ariaError?: string;
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ className, type, id, label, error, ...props }, ref) => {
+  ({ className, type, id, label, ariaError, error, ...props }, ref) => {
     return (
-      <div className="min-w-full">
+      <div className="min-w-[90%] max-w-full">
         {label && (
-          <label htmlFor={id} className="mb-1 block">
+          <label htmlFor={id} className="mb-1 block select-none">
             {label}
           </label>
         )}
@@ -25,14 +26,17 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             className,
           )}
           ref={ref}
+          aria-describedby={ariaError}
           {...props}
         />
-        {error &&
-          error.map((e, index) => (
-            <p key={index} className="mt-px text-sm text-red-500">
-              {e}
-            </p>
-          ))}
+        <div id={ariaError} aria-live="polite" aria-atomic="true">
+          {error &&
+            error.map((e) => (
+              <p className="mt-1 text-sm text-red-500" key={e}>
+                {e}
+              </p>
+            ))}
+        </div>
       </div>
     );
   },

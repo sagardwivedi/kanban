@@ -30,6 +30,9 @@ export function SignUpForm() {
         id="email"
         name="email"
         error={state.errors?.email}
+        ariaError="email-error"
+        autoComplete="email"
+        required
       />
 
       <Input
@@ -39,6 +42,9 @@ export function SignUpForm() {
         id="password"
         name="password"
         error={state.errors?.password}
+        ariaError="password-error"
+        autoComplete="new-password"
+        required
       />
 
       <Input
@@ -48,10 +54,13 @@ export function SignUpForm() {
         id="Rpassword"
         name="Rpassword"
         error={state.errors?.password}
+        ariaError="Rpassword-error"
+        autoComplete="new-password"
+        required
       />
       <SignUpButton />
       <p>
-        Already have an account?{' '}
+        Already have an account?
         <Link href={'/login'} className="text-purple-500 hover:underline">
           Login
         </Link>

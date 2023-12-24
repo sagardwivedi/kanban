@@ -1,18 +1,17 @@
 import { z } from 'zod';
+import { delay } from '../utils';
 
-type State = {
+interface State {
   message?: string;
   errors?: {
-    email?: string[] | null;
-    password?: string[] | null;
+    email?: string[];
+    password?: string[];
+    Rpassword?: string[];
   };
-};
+}
 
 const FormSchema = z.object({
-  email: z
-    .string()
-    .email({ message: 'Please enter correct email' })
-    .min(1, { message: 'Please enter email' }),
+  email: z.string().email(),
   password: z.string(),
   Rpassword: z.string(),
 });
@@ -29,28 +28,24 @@ export async function loginAction(
   });
 
   if (!validate.success) {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        const newState: State = {
-          message: 'Something went wrong',
-          errors: validate.error.flatten().fieldErrors,
-        };
-        resolve(newState);
-      }, 3000);
-    });
+    return delay(
+      {
+        message: 'Something went wrong',
+        errors: validate.error.flatten().fieldErrors,
+      },
+      3000,
+    );
   }
 
   const { email, password } = validate.data;
 
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      const newState: State = {
-        message: `Done Well ${email} and ${password}`,
-        errors: {},
-      };
-      resolve(newState);
-    }, 3000);
-  });
+  return delay(
+    {
+      message: `Done Well ${email} and ${password}`,
+      errors: {},
+    },
+    3000,
+  );
 }
 
 const SignUpSchema = FormSchema;
@@ -66,31 +61,35 @@ export async function signupAction(
   });
 
   if (!validate.success) {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        const newState: State = {
-          message: 'Something went wrong',
-          errors: validate.error.flatten().fieldErrors,
-        };
-        resolve(newState);
-      }, 3000);
-    });
+    return delay(
+      {
+        message: 'Something went wrong',
+        errors: validate.error.flatten().fieldErrors,
+      },
+      3000,
+    );
   }
 
   const { Rpassword, password, email } = validate.data;
 
   if (password !== Rpassword) {
-    return {
-      message: 'Password does not match',
-    };
+    return delay(
+      {
+        message: 'Password does not match',
+        errors: {
+          password: ['Password does not match'],
+          Rpassword: ['Password does not match'],
+        },
+      },
+      3000,
+    );
   }
 
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      const newState: State = {
-        message: `Done Well ${email} , ${password} and ${Rpassword}`,
-      };
-      resolve(newState);
-    }, 3000);
-  });
+  return delay(
+    {
+      message: `Check your email`,
+      errors: {},
+    },
+    3000,
+  );
 }

@@ -1,6 +1,6 @@
 export function Logo() {
   return (
-    <div className="flex flex-row items-center gap-2">
+    <div className="flex select-none flex-row items-center gap-2">
       <Stripe />
       <h1 className="text-secondary-color text-3xl font-bold dark:text-white">
         Task Vista

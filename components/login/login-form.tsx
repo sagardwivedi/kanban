@@ -28,16 +28,22 @@ export function LoginForm() {
         placeholder="sagar@email.com"
         label="Email"
         id="email"
-        name='email'
+        name="email"
         error={state.errors?.email}
+        ariaError="email-error"
+        autoComplete="email"
+        required
       />
       <Input
         type="password"
         placeholder="********"
         label="Password"
         id="password"
-        name='password'
+        name="password"
         error={state.errors?.password}
+        ariaError="password-error"
+        autoComplete="current-password"
+        required
       />
       <LoginButton />
       <p>

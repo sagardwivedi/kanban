@@ -3,8 +3,8 @@ import { LoginForm } from '@/components/login/login-form';
 
 export default function Login() {
   return (
-    <main className='flex justify-center items-center h-dvh'>
-      <div className='space-y-5'>
+    <main className="flex h-dvh items-center justify-center">
+      <div className="space-y-5">
         <Logo />
         <LoginForm />
       </div>
