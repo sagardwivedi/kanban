@@ -1,6 +1,7 @@
 'use client';
 
-import { Modal } from '@/components/ui/modal';
+import AddTask from '@/components/board/addTask';
+import CreateBoard from '@/components/board/createBoard';
 import { useSearchParams } from 'next/navigation';
 
 export function ModalProvider() {
@@ -8,7 +9,9 @@ export function ModalProvider() {
 
   switch (params) {
     case 'createBoard':
-      return <Modal />;
+      return <CreateBoard />;
+    case 'addTask':
+      return <AddTask />;
     default:
       return null;
   }

@@ -1,24 +1,54 @@
-import Link from 'next/link';
+'use client';
+import { useRouter } from 'next/navigation';
+import { MouseEventHandler, useCallback, useEffect, useRef } from 'react';
 
-export function Modal() {
+interface ModalProps {
+  title: string;
+  description?: string;
+  children: React.ReactNode;
+}
+
+export default function Modal({ children, title, description }: ModalProps) {
+  const overlay = useRef<HTMLDivElement>(null);
+  const router = useRouter();
+
+  const onDismiss = useCallback(() => {
+    router.back();
+  }, [router]);
+
+  const onClick: MouseEventHandler<HTMLDivElement> = useCallback(
+    (e) => {
+      if (e.target === overlay.current) {
+        if (onDismiss) onDismiss();
+      }
+    },
+    [onDismiss, overlay],
+  );
+
+  const onKeyDown = useCallback(
+    (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onDismiss();
+    },
+    [onDismiss],
+  );
+
+  useEffect(() => {
+    document.addEventListener('keydown', onKeyDown);
+    return () => document.removeEventListener('keydown', onKeyDown);
+  }, [onKeyDown]);
+
   return (
-    <div className="fixed inset-0 flex h-full w-full items-center justify-center overflow-y-auto bg-black bg-opacity-50">
-      <div className="w-96 rounded-md border bg-white p-8 shadow-lg">
-        <div className="text-center">
-          <h3 className="text-2xl font-bold text-gray-900">Modal Title</h3>
-          <div className="mt-2 px-7 py-3">
-            <p className="text-lg text-gray-500">Modal Body</p>
-          </div>
-          <div className="mt-4 flex justify-center">
-            {/* Navigates back to the base URL - closing the modal */}
-            <Link
-              href="/"
-              className="rounded-md bg-blue-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-300"
-            >
-              Close
-            </Link>
-          </div>
+    <div
+      ref={overlay}
+      className="fixed inset-0 flex h-full w-full items-center justify-center overflow-y-auto bg-black/50"
+      onClick={onClick}
+    >
+      <div>
+        <div>
+          <h1>{title}</h1>
+          {description && <p>{description}</p>}
         </div>
+        {children}
       </div>
     </div>
   );

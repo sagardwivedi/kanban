@@ -1,4 +1,6 @@
+import { ModalProvider } from '@/Provider/ModalProvider';
 import { Sidebar } from '@/components/board/SIdebar';
+import { Suspense } from 'react';
 
 export default function BoardLayout({
   children,
@@ -6,11 +8,16 @@ export default function BoardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <main className="flex h-dvh flex-row text-white">
-      <div className="max-md:hidden">
-        <Sidebar />
-      </div>
-      <div className="flex-1 bg-secondary-background">{children}</div>
-    </main>
+    <>
+      <Suspense>
+        <ModalProvider />
+      </Suspense>
+      <main className="flex h-dvh flex-row text-white">
+        <div className="max-md:hidden">
+          <Sidebar />
+        </div>
+        <div className="flex-1 bg-secondary-background">{children}</div>
+      </main>
+    </>
   );
 }

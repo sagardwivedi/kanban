@@ -6,7 +6,11 @@ interface DataItem {
   name: string;
 }
 
-let data: DataItem[] = [];
+let data: DataItem[] = [
+  { id: uuidv4(), name: 'Board 1' },
+  { id: uuidv4(), name: 'Board 2' },
+  { id: uuidv4(), name: 'Board 3' },
+];
 
 export async function createData(name: string): Promise<DataItem | string> {
   try {
@@ -58,4 +62,8 @@ export async function deleteData(id: string): Promise<boolean | string> {
   } catch (error) {
     return 'Failed to delete data.';
   }
+}
+
+export async function getBoardName(id: string): Promise<string | undefined> {
+  return data.find((b) => b.id === id)?.name;
 }

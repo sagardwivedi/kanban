@@ -25,7 +25,7 @@ export function Sidebar() {
         </Suspense>
         <Link
           className="mt-4 block whitespace-pre pl-4 text-primary-text"
-          href="/board/?show=createBoard"
+          href="?show=createBoard"
         >
           + Create New Board
         </Link>
@@ -44,7 +44,7 @@ const Boards = async () => {
       {data && data?.length > 0 ? (
         <div className="space-y-4">
           {data?.map((b) => (
-            <Link className="block" href={`/board/${b.id}`}>
+            <Link key={b.id} className="block" href={`/board/${b.id}`}>
               {b.name}
             </Link>
           ))}
