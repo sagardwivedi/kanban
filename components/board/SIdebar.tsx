@@ -7,7 +7,7 @@ import { BoardSkeleton } from '../skeletons/sidebar';
 
 export function Sidebar() {
   return (
-    <div className="h-full w-64 bg-primary-background">
+    <div className="h-full w-64 bg-neutral-900 rounded-md shadow">
       <div className="flex h-20 items-center justify-center">
         <Logo />
       </div>

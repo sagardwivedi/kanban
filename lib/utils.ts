@@ -16,7 +16,7 @@ export function cn(...inputs: ClassValue[]) {
 export function delay<T>(
   result: T,
   timeout: number,
-  minDelay: number = 3000,
+  minDelay: number = 1000,
 ): Promise<T> {
   const actualDelay = Math.max(timeout, minDelay);
   return new Promise((resolve) => {

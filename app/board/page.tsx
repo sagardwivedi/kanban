@@ -4,7 +4,9 @@ export default function BoardsHome() {
   return (
     <main>
       <Header />
-      Hey
+      <div>
+        <h2>Hello</h2>
+      </div>
     </main>
   );
 }

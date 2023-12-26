@@ -12,11 +12,11 @@ export default function BoardLayout({
       <Suspense>
         <ModalProvider />
       </Suspense>
-      <main className="flex h-dvh flex-row text-white">
+      <main className="flex h-dvh p-2 bg-neutral-950 text-white gap-2 flex-row">
         <div className="max-md:hidden">
           <Sidebar />
         </div>
-        <div className="flex-1 bg-secondary-background">{children}</div>
+        <div className="flex-1 bg-neutral-900 rounded-md shadow">{children}</div>
       </main>
     </>
   );

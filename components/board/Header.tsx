@@ -1,3 +1,3 @@
 export function Header() {
-  return <div className="h-20 bg-primary-background">Headetr</div>;
+  return <div className="h-20 bg-white rounded-md shadow">Headetr</div>;
 }
